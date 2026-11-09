@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An elegant navy and gold birthday celebration card.">
+  <title>Happy Birthday</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #071226;
+      --navy-light: #15233d;
+      --gold: #d3ad62;
+      --gold-bright: #efd18f;
+      --ivory: #f5edde;
+      --ink: #28251f;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+    body {
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      background: #020817;
+      font-family: "Cormorant Garamond", Georgia, serif;
+    } 
+    .birthday-card {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: var(--gold);
+      background:
+        radial-gradient(circle at 50% 43%, rgba(48, 67, 99, 0.35), transparent 34%),
+        radial-gradient(circle at 18% 18%, rgba(44, 62, 98, 0.22), transparent 36%),
+        linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 62%, #050d1e 100%);
+    }
+
+    .birthday-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .birthday-card::after {
+      content: "";
+      position: absolute;
+      top: 1.6%;
+      right: 0.3%;
+      bottom: 3.2%;
+      width: 1px;
+      background: linear-gradient(transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+      opacity: 0.8;
+    }
+
+    .card-content {
+      display: flex;
+      width: min(90vw, 520px);
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(36px, 5vh, 74px) 0 clamp(26px, 3vh, 52px);
+      opacity: 0;
+      text-align: center;
+      animation: card-entrance 1.35s ease-out 0.9s forwards;
+      will-change: opacity, filter;
+    }
+
+    .eyebrow {
+      margin: 0 0 clamp(22px, 3.2vh, 42px);
+      font-size: clamp(1rem, 1.45vw, 1.55rem);
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      line-height: 1;
+      text-indent: 0.42em;
+      text-transform: uppercase;
+    }
+
+    .polaroid {
+      width: clamp(254px, 28vw, 408px);
+      margin: 0;
+      padding: clamp(9px, 0.8vw, 14px) clamp(9px, 0.8vw, 14px) clamp(13px, 1vw, 18px);
+      color: var(--ink);
+      background: var(--ivory);
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.33);
+      transform: rotate(-0.8deg);
+      transition: transform 450ms ease, box-shadow 450ms ease;
+    }
+
+    .photo-reveal {
+      display: block;
+    }
+
+    .polaroid:hover {
+      box-shadow: 0 28px 52px rgba(0, 0, 0, 0.42);
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    .photo-window {
+      width: 100%;
+      aspect-ratio: 1.1 / 1;
+      overflow: hidden;
+      background: #d8d3cb;
+    }
+
+    .photo-window img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 8%;
+    }
+
+    figcaption {
+      padding-top: clamp(4px, 0.5vw, 8px);
+    }
+
+    .script-title,
+    .script-subtitle {
+      display: block;
+      font-weight: 400;
+    }
+
+    .script-title {
+      font-family: "Cinzel Decorative", Georgia, serif;
+      font-size: clamp(1.3rem, 1.85vw, 2.05rem);
+      font-weight: 700;
+      letter-spacing: 0.035em;
+      line-height: 1;
+    }
+
+    .script-subtitle {
+      margin-top: 2px;
+      font-size: clamp(1.02rem, 1.35vw, 1.55rem);
+      line-height: 1;
+    }
+
+    .caption-celebration {
+      margin: 1px 0 0;
+      font-size: clamp(0.78rem, 1vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .date {
+      margin: clamp(25px, 4vh, 48px) 0 0;
+      color: var(--gold-bright);
+      font-size: clamp(2.3rem, 4vw, 4.1rem);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      line-height: 0.9;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.24);
+    }
+
+    .wish {
+      margin: clamp(15px, 2vh, 25px) 0 0;
+      font-size: clamp(0.95rem, 1.3vw, 1.35rem);
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    .closing {
+      margin: clamp(8px, 1vh, 13px) 0 0;
+      font-size: clamp(0.52rem, 0.62vw, 0.7rem);
+      letter-spacing: 0.38em;
+      line-height: 1.4;
+      text-indent: 0.38em;
+      text-transform: uppercase;
+    }
+
+    .card-footer {
+      position: absolute;
+      bottom: clamp(30px, 4.5vh, 50px);
+      left: 50%;
+      z-index: 2;
+      transform: translateX(-50%);
+    }
+
+    .heart {
+      display: block;
+      color: var(--gold-bright);
+      font-size: clamp(1rem, 1.2vw, 1.3rem);
+      line-height: 1;
+      opacity: 0;
+      text-shadow: 0 0 12px rgba(239, 209, 143, 0.38);
+      animation:
+        heart-appear 1.4s ease-out 3.05s forwards,
+        heart-pulse 2.8s ease-in-out 4.6s infinite;
+      will-change: opacity, transform, text-shadow;
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: slow-reveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal-1 { animation-delay: 1.1s; }
+    .reveal-2 { animation-delay: 1.55s; }
+    .reveal-3 { animation-delay: 2s; }
+    .reveal-4 { animation-delay: 2.4s; }
+    .reveal-5 { animation-delay: 2.75s; }
+
+    .confetti {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -4vh;
+      left: var(--left);
+      width: var(--size);
+      height: calc(var(--size) * 0.55);
+      border-radius: 1px;
+      opacity: 0;
+      background: var(--color);
+      transform: translate3d(0, -6vh, 0) rotate(var(--start-rotation));
+      animation: confetti-fall var(--duration) cubic-bezier(0.2, 0.65, 0.35, 1) var(--delay) forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes card-entrance {
+      from {
+        opacity: 0;
+        filter: blur(8px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heart-appear {
+      from {
+        opacity: 0;
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heart-pulse {
+      0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(239, 209, 143, 0.3);
+      }
+      50% {
+        transform: scale(1.14);
+        text-shadow: 0 0 18px rgba(239, 209, 143, 0.6);
+      }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -6vh, 0) rotate(var(--start-rotation));
+      }
+      8% {
+        opacity: 0.9;
+      }
+      86% {
+        opacity: 0.85;
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift), 108vh, 0) rotate(var(--end-rotation));
+      }
+    }
+
+    @keyframes slow-reveal {
+      from {
+        opacity: 0;
+        filter: blur(4px);
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+      }
+    }
+    @media (min-aspect-ratio: 16/10) {
+      .birthday-card {
+        min-height: min(100vh, 720px);
+      }
+      .card-content {
+        transform: scale(0.92);
+      }
+    }
+    @media (max-width: 600px) {
+      .birthday-card::after {
+        right: 4px;
+      }
+      .card-content {
+        width: min(86vw, 390px);
+      }
+      .eyebrow {
+        letter-spacing: 0.3em;
+        text-indent: 0.3em;
+      }
+      .closing {
+        letter-spacing: 0.24em;
+        text-indent: 0.24em;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .polaroid {
+        transition: none;
+      }
+      .card-content {
+        opacity: 1;
+        animation: none;
+        filter: none;
+      }
+      .reveal {
+        opacity: 1;
+        animation: none;
+        filter: none;
+        transform: none;
+      }
+      .confetti {
+        display: none;
+      }
+
+      .heart {
+        opacity: 1;
+        animation: none;
+        filter: none;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="birthday-card" aria-label="Birthday celebration card">
+    <div class="confetti" aria-hidden="true"></div>
+    <section class="card-content">
+      <h1 class="eyebrow reveal reveal-1">Happy Birthday</h1>
+
+      <div class="photo-reveal reveal reveal-2">
+        <figure class="polaroid">
+          <div class="photo-window">
+            <img
+              src="assets/birthday-photo.jpg"
+              alt="Smiling birthday celebrant holding a glass in front of gold and silver balloons"
+            >
+          </div>
+          <figcaption>
+            <span class="script-title">AMINITAH</span>
+            <p class="caption-celebration">Celebrating You</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="date reveal reveal-3" aria-label="15 October 2026">15 &middot; 10 &middot; 26</p>
+      <p class="wish reveal reveal-4">Cheers to You &middot; With Love</p>
+      <p class="closing reveal reveal-5">Wishing you Joy &amp; Happiness</p>
+    </section>
+
+    <footer class="card-footer" aria-label="Card footer">
+      <span class="heart" aria-hidden="true">&hearts;</span>
+    </footer>
+  </main>
+
+  <script>
+    const confettiContainer = document.querySelector(".confetti");
+    const confettiColors = ["#efd18f", "#d3ad62", "#f5edde", "#b98b39"];
+
+    for (let index = 0; index < 34; index += 1) {
+      const piece = document.createElement("i");
+      const size = 3 + Math.random() * 4;
+
+      piece.className = "confetti-piece";
+      piece.style.setProperty("--left", `${Math.random() * 100}%`);
+      piece.style.setProperty("--size", `${size}px`);
+      piece.style.setProperty("--color", confettiColors[index % confettiColors.length]);
+      piece.style.setProperty("--duration", `${4.6 + Math.random() * 2.4}s`);
+      piece.style.setProperty("--delay", `${0.8 + Math.random() * 1.1}s`);
+      piece.style.setProperty("--drift", `${-70 + Math.random() * 140}px`);
+      piece.style.setProperty("--start-rotation", `${Math.random() * 180}deg`);
+      piece.style.setProperty("--end-rotation", `${540 + Math.random() * 720}deg`);
+      confettiContainer.appendChild(piece);
+    }
+  </script>
+</body>
+</html>
